@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 
+from .events.routes import event_router
+
 version = "v1"
 
 description = """
@@ -22,6 +24,8 @@ app = FastAPI(
     docs_url="/documentation/swagger",
     redoc_url="/documentation/redoc",
 )
+
+app.include_router(event_router, prefix="/events", tags=["events"])
 
 
 if __name__ == "__main__":
