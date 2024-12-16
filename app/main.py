@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from .events.routes import event_router
+from app.events.routes import event_router
 
 version = "v1"
 

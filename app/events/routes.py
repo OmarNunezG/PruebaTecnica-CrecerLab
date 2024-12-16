@@ -1,9 +1,9 @@
 from typing import List
 from uuid import UUID
 
-from fastapi import APIRouter, status, Response, Request
+from fastapi import APIRouter, Request, Response, status
 
-from .schemas import Event, CreateEvent, UpdateEvent
+from .schemas import CreateEvent, Event, UpdateEvent
 from .service import EventService
 
 event_router = APIRouter()

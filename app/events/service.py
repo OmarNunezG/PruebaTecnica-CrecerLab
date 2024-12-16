@@ -2,12 +2,12 @@ from datetime import datetime, timezone
 from typing import List
 from uuid import UUID, uuid4
 
-from fastapi.exceptions import HTTPException
 from fastapi import status
+from fastapi.exceptions import HTTPException
 
 from app.celery_worker import create_task
 
-from .schemas import CreateEvent, UpdateEvent, Event
+from .schemas import CreateEvent, Event, UpdateEvent
 
 events: List[Event] = []
 """List of events. In-memory storage."""
