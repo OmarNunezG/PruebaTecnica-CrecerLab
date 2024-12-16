@@ -1,7 +1,7 @@
 from typing import List
 from uuid import UUID
 
-from fastapi import APIRouter, status
+from fastapi import APIRouter, status, Response, Request
 
 from .schemas import Event, CreateEvent, UpdateEvent
 from .service import EventService
@@ -18,10 +18,16 @@ def get_all_events() -> List[Event]:
 
 
 @event_router.post("", status_code=status.HTTP_201_CREATED, response_model=Event)
-def create_a_event(
+def create_an_event(
+    response: Response,
+    request: Request,
     payload: CreateEvent,
 ) -> Event:
     event = event_service.create(payload)
+
+    event_location = request.url_for("retrieve_event", event_id=event.id)
+
+    response.headers["Location"] = str(event_location)
     return event
 
 
